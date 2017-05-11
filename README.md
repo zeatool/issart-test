@@ -1,69 +1,19 @@
-Symfony Standard Edition
+ISS art тестовое задание
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Реализовать на Symfony2 (версия 2.3+) следующий функционал: 
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+1. Авторизация (емайл, пароль), восстановление пароля, регистрация (имя, емайл, пароль, капча), подтверждение адреса электронной почты после регистрации.
 
-What's inside?
---------------
+2. Регистрация/Авторизация через соцсеть Facebook.
 
-The Symfony Standard Edition is configured with the following defaults:
+3. Роль администратора. Аккаунт администратора предустановленный (admin@mail.com/123), администратор не может регистрироваться.
 
-  * An AppBundle you can use to start coding;
+4. Profile page. Возможность изменить емайл (при изменении емайла необходимо отправлять письмо для подтверждения нового адреса и делать logout текущего пользователя), имя и пароль. 
 
-  * Twig as the only configured template engine;
+5. Меню для не авторизованного пользователя: Login. Меню для авторизованного пользователя: Products, Profile, Logout. 
 
-  * Doctrine ORM/DBAL;
-
-  * Swiftmailer;
-
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.8/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/doctrine.html
-[8]:  https://symfony.com/doc/2.8/templating.html
-[9]:  https://symfony.com/doc/2.8/security.html
-[10]: https://symfony.com/doc/2.8/email.html
-[11]: https://symfony.com/doc/2.8/logging.html
-[12]: https://symfony.com/doc/2.8/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+6. Products page. 
+- Список продуктов текущего пользователя: Название продукта, описание, thumbnail изображение, цена. Пользователь с ролью администратора видит продукты всех пользователей и в таблице продуктов добавляется еще одна колонка: "<имя пользователя> (<емайл>)". Список должен сортироваться по любой из колонок. Также нужна возможность фильтрации списка по названию товара. 
+- Форма добавления/редактирования продукта. (название, описание, изображение продукта (опциональное поле), цена) 
+- Возможность удаления продукта. (пользователь может удалить только свой продукт, администратор может удалить продукт любого пользователя)
