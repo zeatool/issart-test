@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <h1>Product edit</h1>
+    <div class="btn-group">
+        <a class="btn btn-default" href="{{ path('product_index') }}"><i class="glyphicon glyphicon-arrow-left"></i>
+            Back to the list</a>
+        {{ form_start(delete_form) }}
+        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</button>
+        {{ form_end(delete_form) }}
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            {% if product.image == '' %}
+                <img src="{{ image('assets/images/no_photo.jpg').resize(350,350) }}" alt=""/>
+            {% else %}
+                <img src="{{ image('uploads/images/' ~ product.image).resize(350,350) }}" alt=""/>
+            {% endif %}
+        </div>
+        <div class="col-xs-8">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn btn-success" type="submit" value="Save"/>
+            {{ form_end(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

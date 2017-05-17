@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <h1>Products list</h1>
+    <form class="form-inline" style="margin-bottom: 10px">
+        <a class="btn btn-success" href="{{ path('product_new') }}"><i class="glyphicon glyphicon-plus"></i> Add a new product</a>
+        <div class="pull-right">
+            <input class="form-control js-search" type="text" name="q" value="{{ app.request.get('q') }}" placeholder="Search.."/>
+            <button type="submit" class="btn bnt-default"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="sorting {{ getSortClass('id',sort,sort_by) }}" data-column="id">Id</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th class="sorting {{ getSortClass('username',sort,sort_by) }}" data-column="username">User</th>
+                {% endif %}
+                <th class="sorting {{ getSortClass('name',sort,sort_by) }}" data-column="name">Name</th>
+                <th class="sorting {{ getSortClass('price',sort,sort_by) }}" data-column="price">Price</th>
+                <th class="sorting {{ getSortClass('description',sort,sort_by) }}" data-column="description">Description</th>
+                <th class="sorting {{ getSortClass('image',sort,sort_by) }}" data-column="image">Image</th>
+                <th width="110">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>{{ product.username }} ({{ product.email }})</td>
+                {% endif %}
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.description }}</td>
+                <td>
+                    {% if product.image == '' %}
+                        <img src="{{  image('assets/images/no_photo.jpg').resize(150,150) }}" alt=""/>
+                    {% else %}
+                        <img src="{{  image('uploads/images/' ~ product.image).resize(150,150) }}" alt=""/>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a title="Show" class="btn btn-success" href="{{ path('product_show', { 'id': product.id }) }}"><i class="glyphicon glyphicon-search"></i></a>
+                        <a title="Edit" class="btn btn-info" href="{{ path('product_edit', { 'id': product.id }) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">
+                    No results...
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

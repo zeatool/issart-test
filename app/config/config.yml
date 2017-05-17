@@ -35,7 +35,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-
+    form:
+          resources: ['bootstrap_3_layout.html.twig']
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -92,3 +93,6 @@ hwi_oauth:
              type:                facebook
              client_id:           1904085496545973
              client_secret:       3364b8abef9a49f76532220a9a29892d
+gregwar_image:
+    cache_dir:  "%image_thumb_dir%"
+    fallback_image: no_photo.jpg

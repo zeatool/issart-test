@@ -19,3 +19,7 @@ services:
           arguments: ['@fos_user.mailer', '@fos_user.util.token_generator', '@router', '@session', '@security.token_storage']
           tags:
             - { name: kernel.event_subscriber }
+    app.twig.sort_extension:
+            class: AppBundle\Twig\SortExtension
+            tags:
+                - { name: twig.extension }

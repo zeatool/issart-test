@@ -4,23 +4,39 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<form class="form" action="{{ path("fos_user_security_check") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
+    <div class="form-group">
+        <label for="username">{{ 'security.login.username'|trans }} or email</label>
+        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="password">{{ 'security.login.password'|trans }}</label>
+        <input class="form-control" type="password" id="password" name="_password" required="required" />
+    </div>
+    <div class="form-group">
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <a href="{{ path('fos_user_registration_register') }}">Register</a><br/>
+            <a href="{{ path('fos_user_resetting_request') }}">Restore password</a>
+        </div>
+        <div class="col-xs-6">
+            <input class="btn btn-success" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            <a class="btn btn-info" href="/web/app_dev.php/login/facebook">Login facebook</a>
+        </div>
+    </div>
 
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
 
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
 </form>
-<a href="{{ path('fos_user_registration_register') }}">Register</a>
-<br/>
-<a href="{{ path('fos_user_resetting_request') }}">Restore password</a>
-<a href="/web/app_dev.php/login/facebook">Login facebook</a>
+
+
+
+
