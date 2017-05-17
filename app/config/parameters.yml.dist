@@ -18,4 +18,4 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
     image_dir: '%kernel.root_dir%/../web/uploads/images'
-    image_thumb_dir: '%kernel.root_dir%/../web/uploads/images/thumbs'
+    image_thumb_dir: 'uploads/images/thumbs/'
